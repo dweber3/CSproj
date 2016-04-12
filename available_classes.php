@@ -14,7 +14,7 @@ session_start();
 		<h2>Available Classes</h2></div>
 		<div id="search">
 		<?php
-		$completed = $_SESSION["completed"];
+		$classes = $_SESSION["classes"];
 		?>
 		Placeholder
 		</div>
