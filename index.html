@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>CMSC Class Selector</title>
+		<link rel="stylesheet" type="text/css" href="433.css">
+	</head>
+	<body>
+		<div id="head">
+		<h1>Comp Sci Class Selector</h1>
+		<h2>User Login</h2></div>
+		<div id="login">
+		<form action="login.php" method="post">
+			  <input type="text" name="firstname" required pattern="^[A-Za-z-']{3,20}$" placeholder="Enter your First Name"><br><br>
+			  <input type="text" name="lastname" required pattern="^[A-Za-z-']{3,20}$" placeholder="Enter your Last Name"><br><br>
+			  <input type="email" name="email" required pattern="^.+@umbc.edu$" placeholder="Enter your UMBC Email"><br><br>
+			  <input type="submit" value="Log In">
+		</div>
+	</body>
+</html>
