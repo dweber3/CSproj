@@ -38,7 +38,7 @@ $_SESSION["numClasses"] = 1;
 		echo "!<br><br>";
 		echo "Retreiving your classes...";
 		echo '<script type="text/javascript">
-		setTimeout(function(){window.location = "http://userpages.umbc.edu/~justus2/cmsc433/project/class_search.php"},2000);
+		setTimeout(function(){window.location = "http://userpages.umbc.edu/~vh30178/CMSC433/project/class_search.php"},2000);
 		</script>';
 	}
 	else {
@@ -51,7 +51,7 @@ $_SESSION["numClasses"] = 1;
 		echo "!<br><br>";
 		echo "Redirecting to class search...";
 		echo '<script type="text/javascript">
-        setTimeout(function(){window.location = "http://userpages.umbc.edu/~justus2/cmsc433/project/class_search.php"},2000);
+        setTimeout(function(){window.location = "http://userpages.umbc.edu/~vh30178/CMSC433/project/class_search.php"},2000);
 		</script>';
 	}
 ?>
