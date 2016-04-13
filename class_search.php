@@ -20,25 +20,27 @@ session_start();
 			<b><u>Completed Classes</u></b><br><br>
 			<?php
 				mysql_connect("studentdb-maria.gl.umbc.edu", "justus2", "yfgA3FkSBGtiO4Mc") or die("Could not connect to MySQL");
-				mysql_select_db("justus2") or die("No such database");
-				$email = $_SESSION["email"];
+				mysql_select_db("justus2") or die("No such database");	//connect to the database
+				$email = $_SESSION["email"];	//pull user email for class storage
+				$allclasses = array(201, 202, 203, 232, 291, 299, 304, 313, 331, 341, 352, 391, 404, 411, 421, 426, 427, 431, 432, 433, 435, 436, 437, 441, 442, 443, 444, 446, 447, 448, 451, 452, 453, 455, 456, 457, 461, 465, 466, 471, 473, 475, 476, 477, 478, 479, 481, 483, 484, 486, 487, 491, 493, 495, 498, 499);//list of all available class numbers
 
-				if (isset($_SESSION["classes"])) {
+				if (isset($_SESSION["classes"])) {	//set class array to stored user classes if available
 					$classes = $_SESSION["classes"];
 					$classes = array_filter($classes);
 				}
-				else {
+				else {	//otherwise initialize the empty array
 					$classes = array();
 				}
-				$num = $_POST["num"];
+				$num = $_POST["num"];	//get user input
 
-				if (preg_match("/^[2-4][0-9][0-9]$/", $num) && !in_array($num, $classes)) {
+				if (!in_array($num, $classes) && in_array($num, $allclasses)) {
 					array_push($classes, $num);
 					$_SESSION["classes"] = $classes;
 					$selection = "class" . $_SESSION["numClasses"];
 					$qry = "UPDATE class_list433 SET $selection = '$num' WHERE email = '$email'";
 					$result = mysql_query($qry) or die(mysql_error());
-
+					//if user input is valid, push to database and session var, then print
+					
 					foreach($classes AS $class){
 						echo "CMSC ";
 						echo "$class<br>";
@@ -50,6 +52,15 @@ session_start();
 					foreach($classes AS $class){
 						echo "CMSC ";
 						echo "$class<br>";
+					}
+					
+					//display nice error messages
+					if (!in_array($num, $allclasses)) {
+						echo '<br><span class="hidden">Class does not exist</span>';
+					}
+					
+					if (in_array($num, $classes)) {
+						echo '<br><span class="hidden">Class Already Added</span>';
 					}
 				}
 			?>
