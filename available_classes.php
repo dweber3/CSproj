@@ -14,17 +14,20 @@ session_start();
 		<h2>Available Classes</h2></div>
 		<div id="search">
 		<?php
-		$classes = $_SESSION["classes"];	
-		$classesCanTake = array();
-		$fourxx = 0;
-		foreach($classes as $key => $value){
+		$classes = $_SESSION["classes"];	//Take in the list of classes from the session
+		$classesCanTake = array();   //setup the array for the list of classes we can take
+		$fourxx = 0; //helper variable for determining if the user has taken ANY 400 level class
+		foreach($classes as $key => $value){ //Iterate through the list of classes and check for a 400 level class
 		    if ($value > 400){
 		        $fourxx += 1;
 		    }
 		}
-		if (count($classes) == 0){
+		if (count($classes) == 0){//if the user has no classes, then they can only take 201
 		    array_push($classesCanTake,201);
 		}
+		/*A group of if-else checks for classes that we can take
+		* We don't worry about duplicates or order because those are resolved later
+		*/
 		if (in_array(201,$classes)){
 		    array_push($classesCanTake,202);
 		}
@@ -42,7 +45,7 @@ session_start();
 		}
 		if (in_array(341,$classes)){
 		    array_push($classesCanTake,481,461,421,475,476,456,455,453,443,441,437,436,427,471,435);
-		    if ($fourxx > 0){
+		    if ($fourxx > 0){//if the user has taken a 400 level class then they can take 447
 		        array_push($classesCanTake,447);
 
 		    }
@@ -66,11 +69,11 @@ session_start();
 		    array_push($classesCanTake,465,466,487);
 		}
 
-
-		sort($classesCanTake);
-		$classesCanTake = array_unique($classesCanTake);
-		$classesCanTake = array_diff($classesCanTake, $classes);
-		foreach($classesCanTake as $key => $value){
+		sort($classesCanTake);//Sort the array
+		$classesCanTake = array_unique($classesCanTake);//remove duplicates
+		$classesCanTake = array_diff($classesCanTake, $classes);//remove classes that the user has already taken
+		
+		foreach($classesCanTake as $key => $value){//print out the values in the array
 			echo "CMSC ";
 			echo $value;
 			echo "<br>";
